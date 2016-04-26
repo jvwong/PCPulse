@@ -61,14 +61,23 @@ module.exports = {
 
     sections: {
 
-      header: {
+      navigation: {
           selector: '#header_navbar',
           commands: [utilCommands, infoCommands],
 
           elements: {
-          //     title: {
-          //       selector: 'title'
-          //     }
+            web_service_dropdown: {
+              selector: '.nav.navbar-nav .dropdown'
+            },
+            web_service_link: {
+              selector: '.nav.navbar-nav .dropdown > a'
+            },
+            datasources: {
+              selector: 'a[href*="/pc2/datasources"]'
+            },
+            downloads: {
+              selector: 'a[href*="/pc2/downloads"]'
+            }
           }
       }
     }

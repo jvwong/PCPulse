@@ -12,61 +12,52 @@ module.exports = {
     },
 
     after : function(browser) {
+      // browser.pause(5000, done);
       console.log('Closing down...');
     },
 
     beforeEach : function(browser) {
-
     },
 
     afterEach : function(browser, done) {
-        done();
+      browser.pause(100, done);
     },
 
     'Navigation section' : function (client) {
       var page,
           section;
 
-      page = client.page.about(),
+      page = client.page.pc2_info(),
       section = page.section.navigation;
       page
           .navigate()
           .resize();
 
       /* sections */
-      // page.expect.section('@navigation').to.be.visible;
+      page.expect.section('@navigation').to.be.visible;
 
       /* elements */
-      // Apps
-      // section
-      //   .expect.element('@apps').to.be.visible;
-      // section
-      //   .click('@apps')
-      //   .urlContains('#apps');
-      //
-      // // Publications
-      // section
-      //     .expect.element('@publications').to.be.visible;
-      // section
-      //   .click('@publications')
-      //   .urlContains('#publications');
-      //
-      // // contact
-      // section
-      //     .expect.element('@contact').to.be.visible;
-      // section
-      //   .click('@contact')
-      //   .urlContains('#contact');
-      //
-      // // Downloads
-      // section
-      //     .expect.element('@downloads').to.be.visible;
-      // section
-      //     .visitDownloads('archives');
-      //
-      // // Search for term and sanity check pcviz/
-      // section
-      //     .search('BRCA1');
+      // web_service_dropdown
+      section
+        .expect.element('@web_service_dropdown').to.be.visible;
+      section
+        .click('@web_service_link')
+        .assert.cssClassPresent('@web_service_dropdown', 'open');
+
+      // Datasources
+      section
+          .expect.element('@datasources').to.be.visible;
+      section
+          .click('@datasources')
+          .assert.urlContains('/pc2/datasources');
+
+      // Downloads
+      section
+          .expect.element('@downloads').to.be.visible;
+      section
+          .click('@downloads')
+          .assert.urlContains('/pc2/downloads');
+
       /* END elements */
     },
 
