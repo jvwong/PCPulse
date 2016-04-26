@@ -61,8 +61,8 @@ module.exports = {
 
     sections: {
 
-      info: {
-          selector: '#?',
+      header: {
+          selector: '#header_navbar',
           commands: [utilCommands, infoCommands],
 
           elements: {
