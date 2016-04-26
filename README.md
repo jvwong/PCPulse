@@ -2,5 +2,7 @@
 
 ### Requirements
 nodeJS
+
 nightwatch
+
 selenium webdriver
