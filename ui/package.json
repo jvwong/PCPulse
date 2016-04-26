@@ -4,7 +4,7 @@
   "description": "Pathway Commons About",
   "main": "test.js",
   "scripts": {
-    "test": "nightwatch --env default --group about"
+    "test": "nightwatch --env default --group about --group pc2"
   },
   "author": "jvwong",
   "license": "",
