@@ -8,6 +8,7 @@ import os
 from urllib import parse
 import csv
 import time
+from bs4 import BeautifulSoup
 
 #Pre-configured paths
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -96,7 +97,8 @@ class BaseTest(unittest.TestCase):
 
 		if self.headers_xml['Content-Type'] in results['content-type']:
 			try:
-				print('some xml')
+				print(response.text)
+				soup = BeautifulSoup(response.text, 'xml')
 			except ValueError:
 				print('Error decoding XML')
 
