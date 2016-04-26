@@ -16,3 +16,15 @@ Install [Nightwatch](http://nightwatchjs.org/) globally
 
 A good practice is to create a separate subfolder (e.g. bin) and place it there as you might have to download other driver binaries if you want to test multiple browsers.
 
+### Running tests
+You can run the test (groups) from the command line while inside the ui directory
+```
+ $ nightwatch --env default --group about --group pc2
+```
+
+or from the parent directory using the supplied shell script test.sh
+```
+ $ ./test.sh
+```
+
+
