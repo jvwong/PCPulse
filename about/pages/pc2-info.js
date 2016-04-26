@@ -1,5 +1,5 @@
 /**
- * Page object: Pathway Commons 'about'
+ * Page object: Pathway Commons 'pc2'
  * @author jvwong
  * @date 2016-04-25
  */
@@ -42,7 +42,7 @@ utilCommands = {
         browser.assert.equal(result.value.length, count);
     });
   }
-},
+};
 
 infoCommands = {
 };
@@ -54,7 +54,7 @@ module.exports = {
 
     /* declare the api.launchUrl inside test_settings */
     url: function() {
-        return this.api.launchUrl + '/';
+        return this.api.launchUrl + 'pc2/';
     },
 
     commands: [setupCommands],
@@ -69,7 +69,7 @@ module.exports = {
           //     title: {
           //       selector: 'title'
           //     }
-          // }
+          }
       }
     }
 };

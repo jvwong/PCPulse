@@ -91,7 +91,7 @@ module.exports = {
 
     /* declare the api.launchUrl inside test_settings */
     url: function() {
-        return this.api.launchUrl + '/';
+        return this.api.launchUrl + 'about/';
     },
 
     commands: [setupCommands],
