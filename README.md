@@ -46,6 +46,7 @@ Use a python environment tool to install python and associated-packages as decla
 If using [conda](https://www.continuum.io/downloads):
 ```
  $ conda create --name pctest --file conda-requirements.txt
+ $ source activate pctest
 ```
 
 Run the tests from the command-line:
