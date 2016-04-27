@@ -5,9 +5,7 @@ To setup the UI tests, you'll need to clone this repo and install the required l
 
 ### Download Selenium
 
-[Download](http://selenium-release.storage.googleapis.com/index.html) the latest version of the selenium-server-standalone-{VERSION}.jar file from the Selenium downloads page and place it on the computer with the browser you want to test. In most cases this will be on your local machine and typically inside your project's source folder.
-
-A good practice is to create a separate subfolder (e.g. bin) and place it there as you might have to download other driver binaries if you want to test multiple browsers.
+[Download](http://selenium-release.storage.googleapis.com/index.html) the latest version of the selenium-server-standalone-{VERSION}.jar file from the Selenium downloads page. A good practice is to create a separate subfolder (e.g. bin) and place it there.
 ```
  $ mkdir -p ui/bin 
  $ cd ui/bin && wget http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar
@@ -34,6 +32,28 @@ You can run the test (groups) from the command line:
 ```
 
 You can also just use the shell script: 
+```
+ $ ./test.sh
+```
+
+## Webservice Tests
+You will need to have python <= version 3.3 installed for compatibility with the xml-related [library](https://www.crummy.com/software/BeautifulSoup/bs4/doc/). The following instructions are relevant to the `api` directory.
+
+### Install python and dependencies
+
+Use a python environment tool to install python and associated-packages as declared in `conda-requirements.txt`.
+
+If using [conda](https://www.continuum.io/downloads):
+```
+ $ conda create --name pctest --file conda-requirements.txt
+```
+
+Run the tests from the command-line:
+```
+ $ python -m unittest discover -v -s tests
+```
+
+or using the bash script:
 ```
  $ ./test.sh
 ```
