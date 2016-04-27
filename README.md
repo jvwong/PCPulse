@@ -1,7 +1,7 @@
 # PCPulse
 
 ## UI Tests
-To setup the UI tests, you'll need to clone this repo and install the required libraries. You will need to have NodeJS installed. 
+To setup the UI tests, you'll need to clone this repo and install the required libraries. You will need to have NodeJS installed. The following instructions are relevant to the `ui` directory.
 
 ### Download Selenium
 
@@ -22,18 +22,18 @@ Install [Nightwatch](http://nightwatchjs.org/) globally
 
 ### Install NodeJS dependencies 
 
-From within the ui directory, install npm packages declared in package.json
+Install npm packages declared in package.json
 ```
  $ npm install 
 ```
 
 ### Running tests
-You can run the test (groups) from the command line while inside the ui directory
+You can run the test (groups) from the command line: 
 ```
  $ nightwatch --env default --group about --group pc2
 ```
 
-or from the parent directory using the supplied shell script test.sh
+You can also just use the shell script: 
 ```
  $ ./test.sh
 ```
