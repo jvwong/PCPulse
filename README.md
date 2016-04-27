@@ -36,7 +36,7 @@ You can also just use the shell script:
  $ ./test.sh
 ```
 
-## Webservice Tests
+## Webservice API Tests
 You will need to have python <= version 3.3 installed for compatibility with the xml-related [library](https://www.crummy.com/software/BeautifulSoup/bs4/doc/). The following instructions are relevant to the `api` directory.
 
 ### Install python and dependencies
