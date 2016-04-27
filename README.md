@@ -1,4 +1,4 @@
-# pc_testing
+# PCPulse
 
 ## UI Tests
 To setup the UI tests, you'll need to clone this repo and install the required libraries. You will need to have NodeJS installed. 
