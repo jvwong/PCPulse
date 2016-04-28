@@ -1,4 +1,5 @@
 import unittest
+from requests.exceptions import Timeout, RequestException
 import requests
 import os
 from urllib import parse
@@ -6,12 +7,13 @@ import csv
 import time
 from bs4 import BeautifulSoup
 
-#Pre-configured paths
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 REPORTS_DIR = os.path.join(BASE_DIR, 'reports')
+TIMEOUT_LIMIT = 120
 
 if not os.path.exists(REPORTS_DIR):
     os.makedirs(REPORTS_DIR)
+
 
 class BaseTest(unittest.TestCase):
     @classmethod
@@ -21,7 +23,8 @@ class BaseTest(unittest.TestCase):
         # Create a csv file to write out
         cls.filename = os.path.abspath(os.path.join(REPORTS_DIR, 'results_' + time.strftime("%Y-%m-%d") + '.csv'))
         # csv file header names
-        cls.fieldnames = ['type', 'date', 'method', 'status_code', 'path', 'query', 'records', 'elapsed', 'content-type', 'records']
+        cls.fieldnames = ['type', 'date', 'method', 'status_code',
+                          'path', 'query', 'elapsed', 'content-type', 'records', 'error']
         # webservice url
         cls.url = 'http://beta.pathwaycommons.org/pc2/'
 
@@ -47,24 +50,36 @@ class BaseTest(unittest.TestCase):
     def tearDown(self):
         super(BaseTest, self).tearDown()
 
-    def get_test(self, type, path):
-        # time for server response
+    def get_test(self, type, query):
+        path = parse.urljoin(self.url, query)
         start = time.time()
         # Make the request
-        response = requests.get(parse.urljoin(self.url, path))
-        elapsed = time.time() - start
-        self.process(type, 'GET', response, elapsed)
+        try:
+            start = time.time()
+            response = requests.get(path, timeout=TIMEOUT_LIMIT)
+            elapsed = time.time() - start
+            self.onSuccess(type, 'GET', response, elapsed)
+        except Timeout:
+            elapsed = time.time() - start
+            self.onFailure(type, 'GET', path, elapsed, 'Timeout')
+        except RequestException:
+            elapsed = time.time() - start
+            self.onFailure(type, 'GET', path, elapsed, 'Request Failure')
 
-    def post_test(self, type, path, payload):
+    def onFailure(self, type, method, path, elapsed, error):
+        # extract the parsed response url
+        rurl = parse.urlparse(path)
+        results = dict()
+        results['type'] = type
+        results['date'] = time.strftime("%Y-%m-%d %H:%M:%S")
+        results['method'] = method
+        results['path'] = rurl.path
+        results['query'] = rurl.query
+        results['elapsed'] = elapsed
+        results['error'] = error
+        self.writeout(results)
 
-        # Make the request
-        response = requests.post(
-            parse.urljoin(self.url, path),
-            headers=self.headers_form,
-            data=payload)
-        self.process(type, 'POST', response)
-
-    def process(self, type, method, response, elapsed):
+    def onSuccess(self, type, method, response, elapsed):
         doPrint = False
 
         # extract the parsed response url
@@ -121,6 +136,10 @@ class BaseTest(unittest.TestCase):
                 print('Error decoding text/plain')
 
         if doPrint:
-            with open(self.filename, 'a') as csvfile:
-                writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
-                writer.writerow(results)
+            self.writeout(results)
+
+    def writeout(self, results):
+        with open(self.filename, 'a') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
+            writer.writerow(results)
+
