@@ -48,10 +48,12 @@ class BaseTest(unittest.TestCase):
         super(BaseTest, self).tearDown()
 
     def get_test(self, type, path):
-        # timeout for server response
+        # time for server response
+        start = time.time()
         # Make the request
         response = requests.get(parse.urljoin(self.url, path))
-        self.process(type, 'GET', response)
+        elapsed = time.time() - start
+        self.process(type, 'GET', response, elapsed)
 
     def post_test(self, type, path, payload):
 
@@ -62,7 +64,7 @@ class BaseTest(unittest.TestCase):
             data=payload)
         self.process(type, 'POST', response)
 
-    def process(self, type, method, response):
+    def process(self, type, method, response, elapsed):
         doPrint = False
 
         # extract the parsed response url
@@ -76,7 +78,7 @@ class BaseTest(unittest.TestCase):
         results['path'] = rurl.path
         results['query'] = rurl.query
         results['status_code'] = response.status_code
-        results['elapsed'] = response.elapsed
+        results['elapsed'] = elapsed
         results['content-type'] = response.headers['Content-Type']
 
         # print(response.headers['Content-Type'])
