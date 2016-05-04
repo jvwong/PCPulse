@@ -11,6 +11,10 @@ To setup the UI tests, you'll need to clone this repo and install the required l
  $ cd ui/bin && wget http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar
 ```
 
+### Download PhantomJS
+
+[Download](http://phantomjs.org/download.html) the latest version of the PhantomJS binary. A good practice is to create a separate subfolder (e.g. bin) and place it there.
+
 ### Install Nightwatch
 
 Install [Nightwatch](http://nightwatchjs.org/) globally
