@@ -110,7 +110,7 @@ module.exports = {
                 selector: '#gene-text'
               },
               downloads: {
-                selector: 'a[href="http://beta.pathwaycommons.org/archives/"]'
+                selector: 'a[href="http://www.pathwaycommons.org/archives/"]'
               },
               apps: {
                 selector: 'a[href="#apps"]'

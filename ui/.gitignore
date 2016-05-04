@@ -3,3 +3,5 @@
 /bin
 .DS_Store
 *.log
+.idea/
+npm-debug.log

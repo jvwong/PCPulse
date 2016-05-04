@@ -26,7 +26,7 @@ class BaseTest(unittest.TestCase):
         cls.fieldnames = ['type', 'date', 'method', 'status_code',
                           'path', 'query', 'elapsed', 'content-type', 'records', 'error']
         # webservice url
-        cls.url = 'http://beta.pathwaycommons.org/pc2/'
+        cls.url = 'http://www.pathwaycommons.org/pc2/'
 
         # content-type headers
         cls.headers_json = {'Content-Type': 'application/json'}

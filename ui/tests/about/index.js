@@ -86,7 +86,7 @@ module.exports = {
         .expect.element('@tiles_cbio').to.be.visible;
 
       section
-        .countElements('.tile', 6);
+        .countElements('.tile', 8);
 
       //Visit the tiles and match the url path
       section.visitTile('@button_pcviz', 'pcviz');

@@ -20,7 +20,7 @@
 
   "test_settings" : {
     "default" : {
-      "launch_url" : "http://beta.pathwaycommons.org/",
+      "launch_url" : "http://www.pathwaycommons.org/",
       "selenium_port"  : 4444,
       "selenium_host"  : "localhost",
       "silent": true,
@@ -45,6 +45,16 @@
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true
+      }
+    },
+
+    "headless" : {
+      "desiredCapabilities": {
+        "browserName": "phantomjs",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "phantomjs.binary.path" : "bin/phantomjs",
+        "phantomjs.cli.args" : ["--webdriver=5558 --webdriver-selenium-grid-hub=http://localhost:4444"]
       }
     }
   }
