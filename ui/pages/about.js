@@ -141,8 +141,8 @@ module.exports = {
           button_pcviz: {
             selector: 'a[href*="pcviz"]'
           },
-          button_chibe: {
-            selector: 'a[href*="chibe"]'
+          button_rdf: {
+            selector: 'a[href*="rdf"]'
           },
           button_cypath: {
             selector: 'a[href*="cypath2"]'

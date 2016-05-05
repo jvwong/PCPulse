@@ -90,7 +90,7 @@ module.exports = {
 
       //Visit the tiles and match the url path
       section.visitTile('@button_pcviz', 'pcviz');
-      section.visitTile('@button_chibe', 'chibe');
+      section.visitTile('@button_rdf', 'rdf');
       section.visitTile('@button_cypath', 'cypath2');
       section.visitTile('@button_pc2', 'pc2');
       section.visitTile('@button_biopax', 'biopax');

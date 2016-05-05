@@ -30,9 +30,11 @@
         "path" : "./screenshots"
       },
       "desiredCapabilities": {
-        "browserName": "firefox",
+        "browserName": "phantomjs",
         "javascriptEnabled": true,
-        "acceptSslCerts": true
+        "acceptSslCerts": true,
+        "phantomjs.binary.path" : "bin/phantomjs",
+        "phantomjs.cli.args" : ["--webdriver=5558 --webdriver-selenium-grid-hub=http://localhost:4444"]
       }
     },
 
@@ -48,13 +50,11 @@
       }
     },
 
-    "headless" : {
+    "firefox" : {
       "desiredCapabilities": {
-        "browserName": "phantomjs",
+        "browserName": "firefox",
         "javascriptEnabled": true,
-        "acceptSslCerts": true,
-        "phantomjs.binary.path" : "bin/phantomjs",
-        "phantomjs.cli.args" : ["--webdriver=5558 --webdriver-selenium-grid-hub=http://localhost:4444"]
+        "acceptSslCerts": true
       }
     }
   }
